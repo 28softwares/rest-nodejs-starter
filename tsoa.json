@@ -1,0 +1,29 @@
+{
+  "entryFile": "src/server.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": [
+    "src/controllers/**/*.controller.ts",
+    "src/controllers/*.controller.ts",
+    "src/controllers/v1/*.controller.ts",
+    "src/controllers/v2/*.controller.ts"
+  ],
+  "spec": {
+    "outputDirectory": "public",
+    "specVersion": 3,
+    "spec": {
+      "servers": [
+        {
+          "url": "https://abc.com/api/v1",
+          "description": "prouduction server"
+        },
+        {
+          "url": "http://localhost:4000/api/v1",
+          "description": "Development server"
+        }
+      ]
+    }
+  },
+  "routes": {
+    "routesDir": "src/routes"
+  }
+}
