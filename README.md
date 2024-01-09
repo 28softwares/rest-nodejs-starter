@@ -8,14 +8,10 @@ git remote remove origin
 
 git remote add origin <your_repo_url>
 
-pnpm start:dev 
+pnpm start:dev
 
+Todo :
 
-
-
-Todo : 
-- to add Log configuration.
 - to add redis configuration.
-- to add media configuration.
 - to add auth configuration.
 - to add docker configuration.
