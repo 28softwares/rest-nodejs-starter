@@ -28,4 +28,4 @@ class Server {
   }
 }
 
-const s = new Server();
+new Server();
