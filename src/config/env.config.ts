@@ -11,6 +11,8 @@ class EnvConfiguration {
   static DB_USERNAME = process.env.DB_USERNAME;
   static DB_PASSWORD = process.env.DB_PASSWORD;
   static DB_NAME = process.env.DB_NAME;
+
+  static LOG_LEVEL = process.env.LOG_LEVEL;
 }
 
 export enum Environment {
