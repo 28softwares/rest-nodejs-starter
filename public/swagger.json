@@ -6,7 +6,51 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {},
+		"schemas": {
+			"MediaType": {
+				"enum": [
+					"USER_PROFILE",
+					"USER_CITIZENSHIP",
+					"USER_PASSPORT",
+					"BLOG_THUMBNAIL"
+				],
+				"type": "string"
+			},
+			"Media": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deletedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"name": {
+						"type": "string"
+					},
+					"mimeType": {
+						"type": "string"
+					},
+					"mediaType": {
+						"$ref": "#/components/schemas/MediaType"
+					}
+				},
+				"required": [
+					"id",
+					"createdAt",
+					"deletedAt",
+					"name",
+					"mimeType",
+					"mediaType"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
 		"securitySchemes": {}
 	},
 	"info": {
@@ -39,6 +83,67 @@
 				],
 				"security": [],
 				"parameters": []
+			}
+		},
+		"/media": {
+			"post": {
+				"operationId": "Upload",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/Media"
+										},
+										{
+											"properties": {
+												"message": {
+													"type": "string"
+												},
+												"status": {
+													"type": "string"
+												}
+											},
+											"required": [
+												"message",
+												"status"
+											],
+											"type": "object"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"multipart/form-data": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"file": {
+										"type": "string",
+										"format": "binary"
+									},
+									"mediaType": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"file",
+									"mediaType"
+								]
+							}
+						}
+					}
+				}
 			}
 		}
 	},
