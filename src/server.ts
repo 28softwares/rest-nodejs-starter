@@ -3,10 +3,9 @@ import express from "express";
 import { EnvConfiguration } from "./config/env.config";
 import { AppDataSource } from "./config/database.config";
 import { configMiddleware } from "./middlewares";
+import { RedisUtil } from "./utils/redis.util";
 
 //
-const app = express();
-configMiddleware(app);
 
 class Server {
   constructor() {
@@ -18,6 +17,9 @@ class Server {
     AppDataSource.initialize()
       .then(() => {
         console.log("Data Source has been initialized!");
+        const app = express();
+        configMiddleware(app);
+        new RedisUtil().initialize();
         app.listen(EnvConfiguration.PORT, () => {
           console.log("TCP server established");
         });
