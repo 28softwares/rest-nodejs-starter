@@ -2,9 +2,11 @@ import dotenv from "dotenv";
 
 dotenv.config();
 class EnvConfiguration {
+  // APP
   static PORT = process.env.PORT;
   static NODE_ENV = process.env.NODE_ENV;
 
+  // DB
   static DB_TYPE = process.env.DB_TYPE;
   static DB_HOST = process.env.DB_HOST;
   static DB_PORT = process.env.DB_PORT || 5432;
@@ -12,7 +14,16 @@ class EnvConfiguration {
   static DB_PASSWORD = process.env.DB_PASSWORD;
   static DB_NAME = process.env.DB_NAME;
 
+  // MAIL
+  static MAIL_HOST = process.env.MAIL_HOST;
+  static MAIL_USER = process.env.MAIL_USER;
+  static MAIL_PASSWORD = process.env.MAIL_PASSWORD;
+
+  // LOG
   static LOG_LEVEL = process.env.LOG_LEVEL;
+
+  // URL
+  static FRONTEND_BASE_URL = process.env.FRONTEND_BASE_URL;
 }
 
 export enum Environment {
