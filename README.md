@@ -15,4 +15,3 @@ pnpm start:dev
 Todo :
 
 - to add auth configuration.
-- to add docker configuration.
