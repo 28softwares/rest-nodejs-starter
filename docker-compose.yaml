@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  api:
+    build: .
+    container_name: api_container
+    volumes:
+      - ./:/app/
+      - /app/node_modules
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    container_name: db_container
