@@ -1,0 +1,160 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"MediaType": {
+				"enum": [
+					"USER_PROFILE",
+					"USER_CITIZENSHIP",
+					"USER_PASSPORT",
+					"BLOG_THUMBNAIL"
+				],
+				"type": "string"
+			},
+			"Media": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deletedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"name": {
+						"type": "string"
+					},
+					"mimeType": {
+						"type": "string"
+					},
+					"mediaType": {
+						"$ref": "#/components/schemas/MediaType"
+					}
+				},
+				"required": [
+					"id",
+					"createdAt",
+					"deletedAt",
+					"name",
+					"mimeType",
+					"mediaType"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "rest-nodejs-starter",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"paths": {
+		"/user": {
+			"post": {
+				"operationId": "RegisterUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {},
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"User Routes"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/media": {
+			"post": {
+				"operationId": "Upload",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/Media"
+										},
+										{
+											"properties": {
+												"message": {
+													"type": "string"
+												},
+												"status": {
+													"type": "string"
+												}
+											},
+											"required": [
+												"message",
+												"status"
+											],
+											"type": "object"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"multipart/form-data": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"file": {
+										"type": "string",
+										"format": "binary"
+									},
+									"mediaType": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"file",
+									"mediaType"
+								]
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "https://abc.com/api/v1",
+			"description": "prouduction server"
+		},
+		{
+			"url": "http://localhost:4000/api/v1",
+			"description": "Development server"
+		}
+	]
+}

@@ -5,8 +5,6 @@ import { AppDataSource } from "./config/database.config";
 import { configMiddleware } from "./middlewares";
 import { RedisUtil } from "./utils/redis.util";
 
-//
-
 class Server {
   constructor() {
     this.bootstrap();
