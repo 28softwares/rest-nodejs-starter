@@ -33,7 +33,7 @@ class DotenvConfig {
   // URL
   static FRONTEND_BASE_URL = process.env.FRONTEND_BASE_URL;
   static BASE_URL = process.env.BASE_URL;
-  static MEDIA_TEMP_PATH = process.env.MEDIA_TEMP_PATH;
+  static MEDIA_TEMP_PATH = process.env.MEDIA_TEMP_PATH!;
 
   // MEDIA
   static MEDIA_UPLOAD_PATH = process.env.MEDIA_UPLOAD_PATH;
