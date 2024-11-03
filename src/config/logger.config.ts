@@ -1,5 +1,5 @@
 import winston, { format } from 'winston';
-import { EnvConfiguration, Environment } from './env.config';
+import { DotenvConfig, Environment } from './env.config';
 
 const { printf, timestamp, combine, errors, json } = format;
 
@@ -12,7 +12,7 @@ let transports: (
   | winston.transports.FileTransportInstance
 )[];
 
-if (EnvConfiguration.NODE_ENV === Environment.DEVELOPMENT) {
+if (DotenvConfig.NODE_ENV === Environment.DEVELOPMENT) {
   transports = [new winston.transports.Console()];
 } else {
   transports = [
@@ -22,7 +22,7 @@ if (EnvConfiguration.NODE_ENV === Environment.DEVELOPMENT) {
 
 // warn: message.
 const logger = winston.createLogger({
-  level: EnvConfiguration.LOG_LEVEL,
+  level: DotenvConfig.LOG_LEVEL,
   format: combine(
     // colorize(),
     timestamp({ format: 'YYYY-mm-dd HH:mm' }),

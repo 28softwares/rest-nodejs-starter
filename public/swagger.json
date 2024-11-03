@@ -301,10 +301,10 @@
 					"mimeType": {
 						"type": "string"
 					},
-					"fileName": {
+					"name": {
 						"type": "string"
 					},
-					"fileType": {
+					"mediaType": {
 						"$ref": "#/components/schemas/MediaType"
 					},
 					"path": {
@@ -322,8 +322,8 @@
 					"createdAt",
 					"deletedAt",
 					"mimeType",
-					"fileName",
-					"fileType",
+					"name",
+					"mediaType",
 					"isThumbnail",
 					"userDetail"
 				],

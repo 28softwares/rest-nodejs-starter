@@ -1,4 +1,5 @@
-import { Media, MediaType } from '../../entities';
+import { MediaType } from '../../constants/appConstant';
+import { Media } from '../../entities';
 
 class MediaService {
   async uploadSingle(mediaType: MediaType, mimeType: string, fileName: string) {

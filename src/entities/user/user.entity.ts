@@ -81,7 +81,7 @@ export class User extends CommonEntity {
     if (this.userDetails?.profileImage) {
       await migrateMedia(
         MediaType.PROFILE_IMAGE,
-        this.userDetails.profileImage.fileName,
+        this.userDetails.profileImage.name,
         this.id,
       );
     }
@@ -90,7 +90,7 @@ export class User extends CommonEntity {
   @AfterLoad()
   async appendMediaPath() {
     if (this.userDetails?.profileImage) {
-      this.userDetails.profileImage.path = `${DotenvConfig.BASE_URL}/user/${this.id}/${this.userDetails.profileImage?.fileName}`;
+      this.userDetails.profileImage.path = `${DotenvConfig.BASE_URL}/user/${this.id}/${this.userDetails.profileImage?.name}`;
     }
   }
 

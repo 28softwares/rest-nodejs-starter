@@ -11,13 +11,13 @@ export class Media extends CommonEntity {
   mimeType: string;
 
   @Column({ name: 'file_name' })
-  fileName: string; //it holds file name later we will append full image path
+  name: string; //it holds file name later we will append full image path
 
   @Column({
     enum: MediaType,
     type: 'enum',
   })
-  fileType: MediaType;
+  mediaType: MediaType;
 
   path: string | undefined;
 
@@ -31,12 +31,12 @@ export class Media extends CommonEntity {
 
   @BeforeRemove()
   async deleteFile() {
-    switch (this.fileType) {
+    switch (this.mediaType) {
       case MediaType.BLOG_THUMBNAIL:
         console.log('Blog Thumbnail');
-        console.log(PathUtil.generateMediaPathForBlog(this.id) + this.fileName);
+        console.log(PathUtil.generateMediaPathForBlog(this.id) + this.name);
         await deleteFile(
-          PathUtil.generateMediaPathForBlog(this.id) + this.fileName,
+          PathUtil.generateMediaPathForBlog(this.id) + this.name,
         );
         break;
     }

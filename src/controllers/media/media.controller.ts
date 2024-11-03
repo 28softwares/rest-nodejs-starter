@@ -7,11 +7,11 @@ import {
   Request,
   UploadedFile,
 } from 'tsoa';
-import { MediaType } from '../../entities/media/media.entity';
 import path from 'path';
 import fs from 'fs';
 import mediaService from '../../services/media/media.service';
 import { DotenvConfig } from '../../config/env.config';
+import { MediaType } from '../../constants/appConstant';
 
 @Route('media')
 class MediaController extends Controller {
@@ -63,12 +63,7 @@ class MediaController extends Controller {
 
     //
     switch (mediaType) {
-      case MediaType.USER_CITIZENSHIP:
-        acceptedExtensions = ['.jpeg', '.png'];
-        fileSize = 1024 * 1024 * 2; // 2 MB
-        break;
-
-      case MediaType.USER_PROFILE:
+      case MediaType.PROFILE_IMAGE:
         acceptedExtensions = ['.jpeg', '.png'];
         fileSize = 1024 * 1024 * 1; // 1MB
         break;

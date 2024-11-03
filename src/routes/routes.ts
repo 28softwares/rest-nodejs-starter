@@ -156,8 +156,8 @@ const models: TsoaRoute.Models = {
       createdAt: { dataType: 'datetime', required: true },
       deletedAt: { dataType: 'datetime', required: true },
       mimeType: { dataType: 'string', required: true },
-      fileName: { dataType: 'string', required: true },
-      fileType: { ref: 'MediaType', required: true },
+      name: { dataType: 'string', required: true },
+      mediaType: { ref: 'MediaType', required: true },
       path: {
         dataType: 'union',
         subSchemas: [{ dataType: 'string' }, { dataType: 'undefined' }],
