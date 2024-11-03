@@ -3,7 +3,7 @@ import { ValidationError, validate } from 'class-validator';
 import { Request, Response, NextFunction } from 'express';
 
 export class RequestValidator {
-  static validate = (classInstance) => {
+  static validate = (classInstance: any) => {
     return async (req: Request, res: Response, next: NextFunction) => {
       const convertedObject = plainToClass(classInstance, req.body);
 

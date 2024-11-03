@@ -12,6 +12,8 @@ export const configMiddleware = (app: express.Application) => {
   RegisterRoutes(app);
 
   if (EnvConfiguration.NODE_ENV === Environment.DEVELOPMENT) {
+    // @ts-nocheck
+
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   }
   app.use(errorHandler);
