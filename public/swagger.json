@@ -9,14 +9,189 @@
 		"schemas": {
 			"MediaType": {
 				"enum": [
-					"USER_PROFILE",
-					"USER_CITIZENSHIP",
-					"USER_PASSPORT",
+					"PROFILE_IMAGE",
+					"PRODUCT_IMAGE",
+					"CAROUSEL_IMAGE",
+					"STORE_LOGO",
 					"BLOG_THUMBNAIL"
 				],
 				"type": "string"
 			},
-			"Media": {
+			"UserLoginType": {
+				"enum": [
+					"TRADITIONAL",
+					"GOOOGLE"
+				],
+				"type": "string"
+			},
+			"UserDetail": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deletedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"user": {
+						"$ref": "#/components/schemas/User"
+					},
+					"address": {
+						"type": "string"
+					},
+					"profileImage": {
+						"$ref": "#/components/schemas/Media"
+					},
+					"avatar": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"createdAt",
+					"deletedAt",
+					"user",
+					"address",
+					"profileImage"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TokenEnum": {
+				"enum": [
+					"REFRESH_TOKEN"
+				],
+				"type": "string"
+			},
+			"User": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deletedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"fullName": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					},
+					"phone": {
+						"type": "string"
+					},
+					"isVerified": {
+						"type": "boolean"
+					},
+					"loginType": {
+						"$ref": "#/components/schemas/UserLoginType"
+					},
+					"userDetails": {
+						"$ref": "#/components/schemas/UserDetail"
+					},
+					"token": {
+						"$ref": "#/components/schemas/Token"
+					}
+				},
+				"required": [
+					"id",
+					"createdAt",
+					"deletedAt",
+					"fullName",
+					"email",
+					"password",
+					"isVerified",
+					"loginType",
+					"userDetails",
+					"token"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AdminPermission": {
+				"enum": [
+					"CAROUSEL",
+					"PRODUCT",
+					"USERS",
+					"ORDERS",
+					"LOGS"
+				],
+				"type": "string"
+			},
+			"Role": {
+				"enum": [
+					"ADMIN",
+					"USER",
+					"SUPER_ADMIN",
+					"NONE"
+				],
+				"type": "string"
+			},
+			"Token": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deletedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"token": {
+						"type": "string"
+					},
+					"type": {
+						"$ref": "#/components/schemas/TokenEnum"
+					},
+					"user": {
+						"$ref": "#/components/schemas/User"
+					},
+					"admin": {
+						"$ref": "#/components/schemas/Admin"
+					}
+				},
+				"required": [
+					"id",
+					"createdAt",
+					"deletedAt",
+					"token",
+					"type",
+					"user",
+					"admin"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"LogAction": {
+				"enum": [
+					"ADD_CAROUSEL",
+					"UPDATE_CAROUSEL",
+					"DELETE_CAROUSEL",
+					"ADD_PRODUCT",
+					"UPDATE_PRODUCT",
+					"DELETE_PRODUCT",
+					"ADD_CATEGORY",
+					"UPDATE_CATEGORY",
+					"DELETE_CATEGORY"
+				],
+				"type": "string"
+			},
+			"Admin": {
 				"properties": {
 					"id": {
 						"type": "string"
@@ -32,11 +207,35 @@
 					"name": {
 						"type": "string"
 					},
-					"mimeType": {
+					"email": {
 						"type": "string"
 					},
-					"mediaType": {
-						"$ref": "#/components/schemas/MediaType"
+					"password": {
+						"type": "string"
+					},
+					"permissions": {
+						"items": {
+							"$ref": "#/components/schemas/AdminPermission"
+						},
+						"type": "array"
+					},
+					"phoneNumber": {
+						"type": "string"
+					},
+					"isActive": {
+						"type": "boolean"
+					},
+					"role": {
+						"$ref": "#/components/schemas/Role"
+					},
+					"token": {
+						"$ref": "#/components/schemas/Token"
+					},
+					"logs": {
+						"items": {
+							"$ref": "#/components/schemas/Log"
+						},
+						"type": "array"
 					}
 				},
 				"required": [
@@ -44,8 +243,89 @@
 					"createdAt",
 					"deletedAt",
 					"name",
+					"email",
+					"password",
+					"permissions",
+					"phoneNumber",
+					"isActive",
+					"role",
+					"token",
+					"logs"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Log": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deletedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"action": {
+						"$ref": "#/components/schemas/LogAction"
+					},
+					"actionBy": {
+						"$ref": "#/components/schemas/Admin"
+					}
+				},
+				"required": [
+					"id",
+					"createdAt",
+					"deletedAt",
+					"action",
+					"actionBy"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Media": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"deletedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"mimeType": {
+						"type": "string"
+					},
+					"fileName": {
+						"type": "string"
+					},
+					"fileType": {
+						"$ref": "#/components/schemas/MediaType"
+					},
+					"path": {
+						"type": "string"
+					},
+					"isThumbnail": {
+						"type": "boolean"
+					},
+					"userDetail": {
+						"$ref": "#/components/schemas/UserDetail"
+					}
+				},
+				"required": [
+					"id",
+					"createdAt",
+					"deletedAt",
 					"mimeType",
-					"mediaType"
+					"fileName",
+					"fileType",
+					"isThumbnail",
+					"userDetail"
 				],
 				"type": "object",
 				"additionalProperties": false

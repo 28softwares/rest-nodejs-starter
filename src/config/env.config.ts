@@ -1,13 +1,21 @@
 import dotenv from 'dotenv';
+import path from 'path';
 
-dotenv.config();
-class EnvConfiguration {
+export enum Environment {
+  DEVELOPMENT = 'DEVELOPMENT',
+  PRODUCTION = 'PRODUCTION',
+  TEST = 'TEST',
+}
+
+dotenv.config({ path: path.resolve(process.cwd(), '.env') });
+
+class DotenvConfig {
   // APP
   static PORT = process.env.PORT;
   static NODE_ENV = process.env.NODE_ENV;
 
   // DB
-  static DB_TYPE = process.env.DB_TYPE;
+  static DB_TYPE = process.env.DB_TYPE || 'postgres';
   static DB_HOST = process.env.DB_HOST;
   static DB_PORT = process.env.DB_PORT || 5432;
   static DB_USERNAME = process.env.DB_USERNAME;
@@ -24,12 +32,12 @@ class EnvConfiguration {
 
   // URL
   static FRONTEND_BASE_URL = process.env.FRONTEND_BASE_URL;
+  static BASE_URL = process.env.BASE_URL;
+  static MEDIA_TEMP_PATH = process.env.MEDIA_TEMP_PATH;
+
+  // MEDIA
+  static MEDIA_UPLOAD_PATH = process.env.MEDIA_UPLOAD_PATH;
+  static TEMP_FOLDER_PATH = process.env.TEMP_FOLDER_PATH!;
 }
 
-export enum Environment {
-  DEVELOPMENT = 'DEVELOPMENT',
-  PRODUCTION = 'PRODUCTION',
-  TEST = 'TEST',
-}
-
-export { EnvConfiguration };
+export { DotenvConfig };

@@ -1,13 +1,13 @@
 import { DataSource } from 'typeorm';
-import { EnvConfiguration } from './env.config';
+import { DotenvConfig } from './env.config';
 
 const AppDataSource = new DataSource({
-  type: EnvConfiguration.DB_TYPE as 'postgres',
-  host: EnvConfiguration.DB_HOST,
-  port: +EnvConfiguration.DB_PORT,
-  username: EnvConfiguration.DB_USERNAME,
-  password: EnvConfiguration.DB_PASSWORD,
-  database: EnvConfiguration.DB_NAME,
+  type: DotenvConfig.DB_TYPE as 'postgres',
+  host: DotenvConfig.DB_HOST,
+  port: +DotenvConfig.DB_PORT,
+  username: DotenvConfig.DB_USERNAME,
+  password: DotenvConfig.DB_PASSWORD,
+  database: DotenvConfig.DB_NAME,
   entities: [`${__dirname}/../entities/**/*.entity.ts`], // use path.join() for windows
   synchronize: true,
   // logging: true,

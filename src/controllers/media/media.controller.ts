@@ -10,8 +10,8 @@ import {
 import { MediaType } from '../../entities/media/media.entity';
 import path from 'path';
 import fs from 'fs';
-import { Constant } from '../../constants/constants';
 import mediaService from '../../services/media/media.service';
+import { DotenvConfig } from '../../config/env.config';
 
 @Route('media')
 class MediaController extends Controller {
@@ -39,12 +39,12 @@ class MediaController extends Controller {
     const ext = path.extname(file.originalname);
     const updatedFileName = uniqueSuffix + ext;
 
-    if (!fs.existsSync(Constant.TEMP_FOLDER_PATH)) {
-      fs.mkdirSync(Constant.TEMP_FOLDER_PATH);
+    if (!fs.existsSync(DotenvConfig.TEMP_FOLDER_PATH)) {
+      fs.mkdirSync(DotenvConfig.TEMP_FOLDER_PATH);
     }
 
     fs.writeFileSync(
-      path.resolve(Constant.TEMP_FOLDER_PATH, updatedFileName),
+      path.resolve(DotenvConfig.TEMP_FOLDER_PATH, updatedFileName),
       file.buffer,
     );
 

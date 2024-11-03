@@ -2,4 +2,4 @@
 export * from './media/media.entity';
 
 // User Entities
-export * from './user/user.entity';
+export * from './user/User.entity';

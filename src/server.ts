@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import express from 'express';
-import { EnvConfiguration } from './config/env.config';
+import { DotenvConfig } from './config/env.config';
 import { AppDataSource } from './config/database.config';
 import { configMiddleware } from './middlewares';
 import { RedisUtil } from './utils/redis.util';
@@ -18,7 +18,7 @@ class Server {
         const app = express();
         configMiddleware(app);
         new RedisUtil().initialize();
-        app.listen(EnvConfiguration.PORT, () => {
+        app.listen(DotenvConfig.PORT, () => {
           console.log('TCP server established');
         });
       })
