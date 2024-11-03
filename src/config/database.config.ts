@@ -1,8 +1,8 @@
-import { DataSource } from "typeorm";
-import { EnvConfiguration } from "./env.config";
+import { DataSource } from 'typeorm';
+import { EnvConfiguration } from './env.config';
 
 const AppDataSource = new DataSource({
-  type: EnvConfiguration.DB_TYPE as "postgres",
+  type: EnvConfiguration.DB_TYPE as 'postgres',
   host: EnvConfiguration.DB_HOST,
   port: +EnvConfiguration.DB_PORT,
   username: EnvConfiguration.DB_USERNAME,

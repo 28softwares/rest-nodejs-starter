@@ -1,10 +1,10 @@
-import nodemailer from "nodemailer";
-import { EnvConfiguration } from "../config/env.config";
+import nodemailer from 'nodemailer';
+import { EnvConfiguration } from '../config/env.config';
 // import tokenService from "../services/token/token.service";
 
 export enum MailType {
-  RESET_PASSWORD = "RESET_PASSWORD",
-  LOGIN_OTP = "LOGIN_OTP",
+  RESET_PASSWORD = 'RESET_PASSWORD',
+  LOGIN_OTP = 'LOGIN_OTP',
 }
 
 class EmailUtil {
@@ -34,14 +34,15 @@ class EmailUtil {
   private async getTemplate(email: string, mailType: MailType) {
     let subject, body;
     switch (mailType) {
-      case MailType.RESET_PASSWORD:
+      case MailType.RESET_PASSWORD: {
         // const token = await tokenService.createResetPasswordToken(email);
-        const token = "abc";
+        const token = 'abc';
         const link = `${EnvConfiguration.FRONTEND_BASE_URL}/reset-password?token=${token}`;
 
-        subject = "Reset password";
+        subject = 'Reset password';
         body = `Your Reset Link is <b><a href=${link}>${link}</a></b>`;
         break;
+      }
     }
     return { subject, body };
   }

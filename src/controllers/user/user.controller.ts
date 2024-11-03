@@ -1,9 +1,9 @@
-import { Controller, Post, Route, Tags } from "tsoa";
+import { Controller, Post, Route, Tags } from 'tsoa';
 
-@Route("user")
-@Tags("User Routes")
+@Route('user')
+@Tags('User Routes')
 export class UserController extends Controller {
-  @Post("")
+  @Post('')
   async registerUser() {
     return {};
   }

@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 
 dotenv.config();
 class EnvConfiguration {
@@ -27,9 +27,9 @@ class EnvConfiguration {
 }
 
 export enum Environment {
-  DEVELOPMENT = "DEVELOPMENT",
-  PRODUCTION = "PRODUCTION",
-  TEST = "TEST",
+  DEVELOPMENT = 'DEVELOPMENT',
+  PRODUCTION = 'PRODUCTION',
+  TEST = 'TEST',
 }
 
 export { EnvConfiguration };

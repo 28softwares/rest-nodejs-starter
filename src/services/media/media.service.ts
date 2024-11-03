@@ -1,8 +1,8 @@
-import { Media, MediaType } from "../../entities";
+import { Media, MediaType } from '../../entities';
 
 class MediaService {
   async uploadSingle(mediaType: MediaType, mimeType: string, fileName: string) {
-    let m = new Media();
+    const m = new Media();
     m.name = fileName;
     m.mediaType = mediaType;
     m.mimeType = mimeType;
